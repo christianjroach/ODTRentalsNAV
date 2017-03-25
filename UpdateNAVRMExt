@@ -1,0 +1,12 @@
+$NSI = 'DynamicsNAV100'
+$AppName = 'ODT Rentals 365'
+$OV = '1.0.0.4'
+$NV = '1.0.0.4'
+Get-NAVAppInfo -ServerInstance $NSI
+Pause
+Uninstall-NAVApp -Name "ODT Rentals 365" -ServerInstance $NSI -Version $OV
+UnPublish-NAVApp -ServerInstance $NSI -Name $AppName -Version $OV
+Publish-NAVApp -ServerInstance $NSI -Path 'D:\Temp\ODTRMExt.navx' -LogPath 'D:\Temp\'
+Install-NAVApp -ServerInstance $NSI -Name $AppName -Version $NV
+Get-NAVAppInfo -ServerInstance $NSI
+Write-host "Completed" -ForegroundColor Green
